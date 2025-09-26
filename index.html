@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Situs Informasi Militer</title>
+    <title>Situs Informasi Militer: Kendaraan Utama</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap');
         
         body {
             font-family: 'Roboto Slab', serif;
+            /* Pertahankan background image, tapi ubah opacity overlay agar lebih jelas */
             background-image: url('https://images.unsplash.com/photo-1541334994269-07f1680d6b9d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
@@ -20,94 +21,109 @@
         }
 
         .overlay {
-            background-color: rgba(0, 0, 0, 0.75);
+            /* Sedikit lebih gelap agar card lebih menonjol */
+            background-color: rgba(0, 0, 0, 0.85); 
         }
         
         .card {
             border: 1px solid rgba(255, 255, 255, 0.2);
+            /* Tambahkan efek bayangan yang halus */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
         }
 
-        .card-item {
-            transition: transform 0.3s ease, color 0.3s ease;
+        /* Styling untuk tiap blok informasi (Card Kendaraan) */
+        .vehicle-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            /* Warna latar belakang yang lebih solid agar konten terlihat */
+            background-color: rgba(25, 30, 40, 0.9); 
         }
 
-        .card-item:hover {
-            transform: scale(1.02);
-            color: #d1d5db; /* gray-300 */
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(17, 24, 39, 0.6), 0 0 10px rgba(59, 130, 246, 0.3); /* Bayangan dengan hint biru */
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body class="flex items-center justify-center min-h-screen p-8">
     <div class="overlay fixed inset-0 z-0"></div>
 
-    <div class="relative z-10 p-8 md:p-12 bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-2xl w-full max-w-2xl mx-auto border border-white/20 text-gray-100 card">
-        <h1 class="text-3xl md:text-4xl text-white font-bold text-center mb-8 font-roboto-slab">Informasi Militer: Kendaraan Tempur 🪖</h1>
+    <div class="relative z-10 w-full max-w-6xl mx-auto text-gray-100 p-4 md:p-8">
         
-        <div class="flex flex-col md:flex-row items-center md:space-x-8 mb-6">
-            <img src="https://images.unsplash.com/photo-1579626343513-34e85741f021?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kendaraan Tempur" class="w-full h-auto md:w-56 rounded-lg border-2 border-gray-400 shadow-lg mb-4 md:mb-0 transform transition-transform duration-300 hover:scale-105">
-            <div class="space-y-4 text-center md:text-left">
-                <h2 class="text-2xl font-semibold">Leopard 2A7+</h2>
-                <p class="text-sm text-gray-400">Tank Tempur Utama Modern</p>
-                <div class="text-base leading-relaxed text-gray-200">
-                    <p>
-                        Tank Leopard 2A7+ adalah versi tercanggih dari keluarga tank Leopard 2 buatan Jerman. Dikenal karena perlindungan modularnya yang unggul, daya tembak presisi, dan mobilitas tinggi. 
-                    </p>
-                </div>
+        <h1 class="text-4xl md:text-5xl text-white font-extrabold text-center mb-12 border-b-4 border-blue-600 pb-3">
+            <span class="text-blue-400">KENDARAAN</span> UTAMA MILITER 🚀
+        </h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-2xl font-bold mb-4 text-blue-400 border-b border-gray-700 pb-2 flex items-center">
+                    Tank Tempur Utama 🛡️
+                </h2>
+                <img src="https://images.unsplash.com/photo-1579626343513-34e85741f021?q=80&w=2070&auto=format&fit=crop" alt="Tank Leopard 2" class="w-full h-40 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-xl font-semibold mb-2">Leopard 2A7+</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Jerman</p>
+                <p class="text-base text-gray-300 mb-4">
+                    Prajurit baja modern, dikenal dengan perisai modular tak tertandingi dan meriam 120mm yang mematikan. Didesain untuk dominasi medan tempur.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Main Battle Tank (MBT)</li>
+                    <li>Senjata Utama: Meriam L/55 120mm</li>
+                    <li>Peran Kunci: Serangan dan Pertahanan Garis Depan</li>
+                </ul>
+                <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-300 font-semibold transition-colors duration-200">
+                    Lihat Detail →
+                </a>
             </div>
+
+            <div class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-2xl font-bold mb-4 text-blue-400 border-b border-gray-700 pb-2 flex items-center">
+                    Pesawat Tempur Jet ✈️
+                </h2>
+                <img src="https://images.unsplash.com/photo-1628173516630-b384f5062c3e?q=80&w=2070&auto=format&fit=crop" alt="Pesawat Jet F-22 Raptor" class="w-full h-40 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-xl font-semibold mb-2">F-22 Raptor</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Amerika Serikat</p>
+                <p class="text-base text-gray-300 mb-4">
+                    Jet tempur superioritas udara generasi ke-5 yang tak tertandingi. Menggabungkan teknologi *stealth*, kecepatan supercruise, dan avionik terintegrasi.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Stealth Fighter</li>
+                    <li>Mesin: 2 x Pratt & Whitney F119-PW-100</li>
+                    <li>Peran Kunci: Dominasi Udara dan Serangan Cepat</li>
+                </ul>
+                <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-300 font-semibold transition-colors duration-200">
+                    Lihat Detail →
+                </a>
+            </div>
+
+            <div class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-2xl font-bold mb-4 text-blue-400 border-b border-gray-700 pb-2 flex items-center">
+                    Sistem Artileri 💣
+                </h2>
+                <img src="https://images.unsplash.com/photo-1549419163-95240292f7f1?q=80&w=2070&auto=format&fit=crop" alt="Howitzer Self-Propelled" class="w-full h-40 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-xl font-semibold mb-2">PzH 2000</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Jerman</p>
+                <p class="text-base text-gray-300 mb-4">
+                    Howitzer *self-propelled* tercanggih. Dikenal karena laju tembakan yang cepat, jangkauan yang luas, dan akurasi yang luar biasa dalam menembak target di darat.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Self-Propelled Howitzer</li>
+                    <li>Kaliber: 155 mm</li>
+                    <li>Peran Kunci: Dukungan Tembakan Jarak Jauh (Fire Support)</li>
+                </ul>
+                <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-300 font-semibold transition-colors duration-200">
+                    Lihat Detail →
+                </a>
+            </div>
+
         </div>
 
-        <div class="space-y-6 mt-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-gray-800/50 p-6 rounded-lg card-item">
-                    <p class="text-sm font-semibold text-gray-400 mb-2">Spesifikasi Kunci:</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300">
-                        <li>Senjata Utama: Meriam Rheinmetall L/55 120mm</li>
-                        <li>Mesin: MTU MB 873 Ka-501, Diesel 12-silinder</li>
-                        <li>Kecepatan Maksimal: 72 km/jam</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800/50 p-6 rounded-lg card-item">
-                    <p class="text-sm font-semibold text-gray-400 mb-2">Kelebihan Utama:</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300">
-                        <li>Perlindungan 360 derajat dari berbagai ancaman.</li>
-                        <li>Sistem kontrol tembakan yang canggih.</li>
-                        <li>Kemampuan beroperasi di lingkungan perkotaan.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="bg-gray-800/50 p-6 rounded-lg card-item">
-                <p class="text-sm font-semibold text-gray-400 mb-2">Lihat Artikel Terkait:</p>
-                <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-200 block mt-2">
-                    <span class="text-lg">Sejarah dan Perkembangan Tank Tempur Utama</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M11 3a1 1 0 100 2h5.586l-7.293 7.293a1 1 0 101.414 1.414L18 6.414V12a1 1 0 102 0V4a1 1 0 00-1-1h-8z"/>
-                        <path d="M4 11a1 1 0 100 2h1a1 1 0 100-2H4z"/>
-                        <path d="M4 15a1 1 0 100 2h1a1 1 0 100-2H4z"/>
-                        <path d="M4 19a1 1 0 100 2h1a1 1 0 100-2H4z"/>
-                        <path d="M12 11a1 1 0 100 2h1a1 1 0 100-2h-1z"/>
-                        <path d="M12 15a1 1 0 100 2h1a1 1 0 100-2h-1z"/>
-                        <path d="M12 19a1 1 0 100 2h1a1 1 0 100-2h-1z"/>
-                    </svg>
-                </a>
-                <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-200 block mt-2">
-                    <span class="text-lg">Perbandingan Tank Modern: Leopard 2 vs M1 Abrams</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M11 3a1 1 0 100 2h5.586l-7.293 7.293a1 1 0 101.414 1.414L18 6.414V12a1 1 0 102 0V4a1 1 0 00-1-1h-8z"/>
-                        <path d="M4 11a1 1 0 100 2h1a1 1 0 100-2H4z"/>
-                        <path d="M4 15a1 1 0 100 2h1a1 1 0 100-2H4z"/>
-                        <path d="M4 19a1 1 0 100 2h1a1 1 0 100-2H4z"/>
-                        <path d="M12 11a1 1 0 100 2h1a1 1 0 100-2h-1z"/>
-                        <path d="M12 15a1 1 0 100 2h1a1 1 0 100-2h-1z"/>
-                        <path d="M12 19a1 1 0 100 2h1a1 1 0 100-2h-1z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        
-        <div class="text-center mt-8">
-            <a href="#" class="w-full inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
-                Jelajahi Lebih Lanjut
+        <div class="text-center mt-12">
+            <a href="#" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-xl transition duration-300 transform hover:scale-[1.03] shadow-lg shadow-red-700/50">
+                JELAJAHI SEMUA KENDARAAN
             </a>
         </div>
     </div>
