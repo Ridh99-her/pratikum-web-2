@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Situs Informasi Militer: Kendaraan Utama</title>
+    <title>Situs Informasi Militer: Fighter Gen 4.5 dan Gen 5</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap');
         
         body {
             font-family: 'Roboto Slab', serif;
-            /* Pertahankan background image, tapi ubah opacity overlay agar lebih jelas */
+            
             background-image: url('https://images.unsplash.com/photo-1541334994269-07f1680d6b9d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
@@ -18,114 +19,356 @@
             background-attachment: fixed;
             margin: 0;
             padding: 0;
+           
+            transition: background-image 1s ease-in-out;
         }
 
         .overlay {
-            /* Sedikit lebih gelap agar card lebih menonjol */
             background-color: rgba(0, 0, 0, 0.85); 
         }
-        
+
         .card {
             border: 1px solid rgba(255, 255, 255, 0.2);
-            /* Tambahkan efek bayangan yang halus */
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
         }
 
-        /* Styling untuk tiap blok informasi (Card Kendaraan) */
         .vehicle-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            /* Warna latar belakang yang lebih solid agar konten terlihat */
             background-color: rgba(25, 30, 40, 0.9); 
         }
 
         .vehicle-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(17, 24, 39, 0.6), 0 0 10px rgba(59, 130, 246, 0.3); /* Bayangan dengan hint biru */
+            box-shadow: 0 15px 25px rgba(17, 24, 39, 0.6), 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+
+       
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .animate-pulse {
+            animation: pulse 1s infinite;
+        }
+
+        
+        .detail-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        .detail-content.active {
+            max-height: 700px; 
+            padding-top: 1rem;
+        }
+        
+        .grid-kaan {
+            grid-column: 1 / -1;
+            max-width: 33.333%; 
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .grid-kaan {
+                max-width: 100%;
+            }
+        }
+
+       
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem; 
+            font-weight: 700; 
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            color: #fca5a5; 
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-8">
+<body id="main-body" class="flex items-start justify-center p-8">
     <div class="overlay fixed inset-0 z-0"></div>
 
-    <div class="relative z-10 w-full max-w-6xl mx-auto text-gray-100 p-4 md:p-8">
+    <div class="relative z-10 w-full max-w-7xl mx-auto text-gray-100 p-4 md:p-8">
         
-        <h1 class="text-4xl md:text-5xl text-white font-extrabold text-center mb-12 border-b-4 border-blue-600 pb-3">
-            <span class="text-blue-400">KENDARAAN</span> UTAMA MILITER 🚀
+        <h1 class="text-4xl md:text-5xl text-white font-extrabold text-center mb-8 border-b-4 border-red-600 pb-3">
+            <span class="text-red-400">EVOLUSI</span> JET TEMPUR ✈️ (Gen 4.5 & 5)
         </h1>
+
+        <h2 class="section-title text-red-300 border-b-2 border-red-400 pb-2">JET TEMPUR GENERASI KE-5</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 
-            <div class="vehicle-card p-6 rounded-xl card">
-                <h2 class="text-2xl font-bold mb-4 text-blue-400 border-b border-gray-700 pb-2 flex items-center">
-                    Tank Tempur Utama 🛡️
+            <div id="card-f35" data-image="https://images.unsplash.com/photo-1616423984577-010375c80526?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-xl font-bold mb-4 text-red-400 border-b border-gray-700 pb-2 flex items-center">
+                    F-35 Lightning II 🇺🇸
                 </h2>
-                <img src="https://images.unsplash.com/photo-1579626343513-34e85741f021?q=80&w=2070&auto=format&fit=crop" alt="Tank Leopard 2" class="w-full h-40 object-cover rounded-lg mb-4">
+                <img src="gambar/F-35A.jpg" alt="Pesawat Jet F-35" class="w-full h-32 object-cover rounded-lg mb-4">
                 
-                <h3 class="text-xl font-semibold mb-2">Leopard 2A7+</h3>
-                <p class="text-sm text-gray-400 mb-4">Negara Asal: Jerman</p>
-                <p class="text-base text-gray-300 mb-4">
-                    Prajurit baja modern, dikenal dengan perisai modular tak tertandingi dan meriam 120mm yang mematikan. Didesain untuk dominasi medan tempur.
-                </p>
-                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
-                    <li>Kategori: Main Battle Tank (MBT)</li>
-                    <li>Senjata Utama: Meriam L/55 120mm</li>
-                    <li>Peran Kunci: Serangan dan Pertahanan Garis Depan</li>
-                </ul>
-                <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-300 font-semibold transition-colors duration-200">
-                    Lihat Detail →
-                </a>
-            </div>
-
-            <div class="vehicle-card p-6 rounded-xl card">
-                <h2 class="text-2xl font-bold mb-4 text-blue-400 border-b border-gray-700 pb-2 flex items-center">
-                    Pesawat Tempur Jet ✈️
-                </h2>
-                <img src="https://images.unsplash.com/photo-1628173516630-b384f5062c3e?q=80&w=2070&auto=format&fit=crop" alt="Pesawat Jet F-22 Raptor" class="w-full h-40 object-cover rounded-lg mb-4">
-                
-                <h3 class="text-xl font-semibold mb-2">F-22 Raptor</h3>
+                <h3 class="text-lg font-semibold mb-2">Multi-role Stealth</h3>
                 <p class="text-sm text-gray-400 mb-4">Negara Asal: Amerika Serikat</p>
-                <p class="text-base text-gray-300 mb-4">
-                    Jet tempur superioritas udara generasi ke-5 yang tak tertandingi. Menggabungkan teknologi *stealth*, kecepatan supercruise, dan avionik terintegrasi.
-                </p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur multifungsi dengan kemampuan siluman tingkat tinggi...</p>
                 <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
-                    <li>Kategori: Stealth Fighter</li>
-                    <li>Mesin: 2 x Pratt & Whitney F119-PW-100</li>
-                    <li>Peran Kunci: Dominasi Udara dan Serangan Cepat</li>
+                    <li>Kategori: Multi-role Fighter</li>
                 </ul>
-                <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-300 font-semibold transition-colors duration-200">
-                    Lihat Detail →
-                </a>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-red-500 hover:text-red-300 font-semibold transition-colors duration-200" data-target="detail-f35">Lihat Detail →</a>
+
+                <div id="detail-f35" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">F-35 Lightning II Detail & Spesifikasi</h4>
+                    F-35 adalah program jet tempur bersama terbesar yang dirancang untuk menggantikan banyak pesawat serang dan tempur generasi sebelumnya. Fokusnya adalah kemampuan siluman, sensor terintegrasi, dan dukungan multi-misi.
+                    <p class="font-semibold text-white mt-3">Spesifikasi (F-35A):</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 1 × Pratt & Whitney F135 (dengan afterburner)</li>
+                        <li>**Kecepatan Maks:** Mach 1.6+ (sekitar 1.930 km/jam)</li>
+                        <li>**Persenjataan:** Meriam internal **GAU-22/A 25 mm** (F-35A), Rudal (AIM-120 AMRAAM, AIM-9X, dll.) di ruang senjata internal.</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="vehicle-card p-6 rounded-xl card">
-                <h2 class="text-2xl font-bold mb-4 text-blue-400 border-b border-gray-700 pb-2 flex items-center">
-                    Sistem Artileri 💣
+            <div id="card-f22" data-image="https://images.unsplash.com/photo-1574768407481-b0af5a57007a?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-xl font-bold mb-4 text-red-400 border-b border-gray-700 pb-2 flex items-center">
+                    F-22 Raptor 🦅
                 </h2>
-                <img src="https://images.unsplash.com/photo-1549419163-95240292f7f1?q=80&w=2070&auto=format&fit=crop" alt="Howitzer Self-Propelled" class="w-full h-40 object-cover rounded-lg mb-4">
+                <img src="gambar/F-22_Raptor.jpg" alt="Pesawat Jet F-22 Raptor" class="w-full h-32 object-cover rounded-lg mb-4">
                 
-                <h3 class="text-xl font-semibold mb-2">PzH 2000</h3>
-                <p class="text-sm text-gray-400 mb-4">Negara Asal: Jerman</p>
-                <p class="text-base text-gray-300 mb-4">
-                    Howitzer *self-propelled* tercanggih. Dikenal karena laju tembakan yang cepat, jangkauan yang luas, dan akurasi yang luar biasa dalam menembak target di darat.
-                </p>
+                <h3 class="text-lg font-semibold mb-2">Air Superiority Stealth</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Amerika Serikat</p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur superioritas udara generasi ke-5 yang tak tertandingi...</p>
                 <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
-                    <li>Kategori: Self-Propelled Howitzer</li>
-                    <li>Kaliber: 155 mm</li>
-                    <li>Peran Kunci: Dukungan Tembakan Jarak Jauh (Fire Support)</li>
+                    <li>Kategori: Air Superiority Fighter</li>
                 </ul>
-                <a href="#" class="mt-4 inline-block text-blue-500 hover:text-blue-300 font-semibold transition-colors duration-200">
-                    Lihat Detail →
-                </a>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-red-500 hover:text-red-300 font-semibold transition-colors duration-200" data-target="detail-f22">Lihat Detail →</a>
+
+                <div id="detail-f22" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">Lockheed Martin F-22 Raptor Detail & Spesifikasi</h4>
+                    F-22 Raptor adalah pesawat tempur taktis siluman segala cuaca kursi tunggal bermesin ganda dari Amerika Serikat. Ia didesain untuk mengemban peran utama sebagai pesawat tempur superioritas udara.
+                    <p class="font-semibold text-white mt-3">Spesifikasi:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 2 × Pratt & Whitney F119-PW-100 (dengan thrust vectoring)</li>
+                        <li>**Kecepatan Maks:** Mach 2.25+ (sekitar 2.410 km/jam), **Supercruise** Mach 1.82</li>
+                        <li>**Persenjataan:** Meriam internal **M61A2 Vulcan 20 mm**, Rudal (AIM-9 Sidewinder, AIM-120 AMRAAM) di ruang senjata internal.</li>
+                    </ul>
+                </div>
             </div>
 
+            <div id="card-j20" data-image="https://images.unsplash.com/photo-1594968536069-42b476d05f32?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-xl font-bold mb-4 text-red-400 border-b border-gray-700 pb-2 flex items-center">
+                    J-20 Mighty Dragon 🇨🇳
+                </h2>
+                <img src="gambar/J-20.jpg" alt="Pesawat Jet J-20" class="w-full h-32 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-lg font-semibold mb-2">Heavy Stealth Fighter</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Tiongkok</p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur siluman kelas berat Tiongkok, fokus pada serangan jarak jauh...</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Air Dominance/Interceptor</li>
+                </ul>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-red-500 hover:text-red-300 font-semibold transition-colors duration-200" data-target="detail-j20">Lihat Detail →</a>
+
+                <div id="detail-j20" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">Chengdu J-20 Detail & Spesifikasi</h4>
+                    Chengdu J-20 adalah jet tempur siluman kursi tunggal bermesin ganda. Desainnya yang panjang menunjukkan fokus pada kecepatan dan jangkauan, ideal untuk misi serangan presisi dan pencegatan jarak jauh.
+                    <p class="font-semibold text-white mt-3">Spesifikasi:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 2 × Shenyang WS-10C / Chengdu WS-15 (estimasi)</li>
+                        <li>**Kecepatan Maks:** Mach 2.0+ (sekitar 2.450 km/jam)</li>
+                        <li>**Persenjataan:** Rudal Jarak Jauh (PL-15), Rudal Jarak Dekat (PL-10) di ruang senjata internal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+            <div id="card-su57" data-image="https://images.unsplash.com/photo-1587372277028-1110034a7131?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-xl font-bold mb-4 text-red-400 border-b border-gray-700 pb-2 flex items-center">
+                    Su-57 Felon 🇷🇺
+                </h2>
+                <img src="gambar/SU-57.jpg" alt="Pesawat Jet Su-57" class="w-full h-32 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-lg font-semibold mb-2">Maneuverable Stealth</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Rusia</p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur siluman Rusia yang berfokus pada kemampuan super-manuver...</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Multi-role Fighter</li>
+                </ul>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-red-500 hover:text-red-300 font-semibold transition-colors duration-200" data-target="detail-su57">Lihat Detail →</a>
+
+                <div id="detail-su57" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">Sukhoi Su-57 Felon Detail & Spesifikasi</h4>
+                    Sukhoi Su-57 (sebelumnya T-50) adalah jet tempur superioritas dan serangan bermesin ganda yang dikembangkan oleh Rusia. Unggul dalam **super-maneuverability** berkat sistem **thrust vectoring**-nya.
+                    <p class="font-semibold text-white mt-3">Spesifikasi:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 2 × Saturn AL-41F1 (Tahap 1) / Izdeliye 30 (Tahap 2 - dengan thrust vectoring)</li>
+                        <li>**Kecepatan Maks:** Mach 2.0+ (sekitar 2.130 km/jam), **Supercruise** Mach 1.3</li>
+                        <li>**Persenjataan:** Meriam internal **GSh-30-1 30 mm**, Rudal R-77M, R-74M2 di ruang senjata internal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 mb-12">
+            <div id="card-kaan" data-image="https://images.unsplash.com/photo-1541334994269-07f1680d6b9d?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card grid-kaan mt-6">
+                <h2 class="text-xl font-bold mb-4 text-red-400 border-b border-gray-700 pb-2 flex items-center">
+                    TAI TF KAAN 🇹🇷 (Prototype)
+                </h2>
+                <img src="gambar/TFX-KAAN.jpg" alt="Pesawat Jet TF KAAN" class="w-full h-32 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-lg font-semibold mb-2">National Fighter (on dev)</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Turki</p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur generasi ke-5 pertama buatan Turki. Diharapkan beroperasi penuh di masa depan...</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Multi-role Fighter Prototype</li>
+                </ul>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-red-500 hover:text-red-300 font-semibold transition-colors duration-200" data-target="detail-kaan">Lihat Detail →</a>
+
+                <div id="detail-kaan" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">TAI TF KAAN Detail & Spesifikasi (Target)</h4>
+                    TAI TF Kaan adalah proyek jet tempur Turki untuk menggantikan F-16 Falcon. Kaan merupakan jet tempur generasi kelima dengan fitur siluman dan avionik canggih buatan dalam negeri.
+                    <p class="font-semibold text-white mt-3">Spesifikasi (Target Produksi):</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 2 × General Electric F110 (Prototipe) / Mesin domestik (Produksi)</li>
+                        <li>**Kecepatan Maks:** Mach 1.8+ (sekitar 2.210 km/jam)</li>
+                        <li>**Persenjataan:** Meriam internal (belum diumumkan), Rudal (GÖKDOĞAN, BOZDOĞAN, dll.) di ruang senjata internal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title text-yellow-300 border-b-2 border-yellow-400 pb-2">JET TEMPUR GENERASI 4.5</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+            
+            <div id="card-typhoon" data-image="https://images.unsplash.com/photo-1541334994269-07f1680d6b9d?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-xl font-bold mb-4 text-yellow-400 border-b border-gray-700 pb-2 flex items-center">
+                    Eurofighter Typhoon 🇬🇧
+                </h2>
+                <img img src="gambar/Eurofighter.jpg">
+                
+                <h3 class="text-lg font-semibold mb-2">Canard-Delta Superiority</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Eropa (Konsorsium)</p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur superioritas udara, lincah dan mampu **Supercruise**...</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Multi-role Fighter</li>
+                </ul>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-yellow-500 hover:text-yellow-300 font-semibold transition-colors duration-200" data-target="detail-typhoon">Lihat Detail →</a>
+
+                <div id="detail-typhoon" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">Eurofighter Typhoon Detail & Spesifikasi</h4>
+                    Dikembangkan oleh Inggris, Jerman, Italia, dan Spanyol. Unggul dalam kecepatan dan manuver dengan radar AESA canggih.
+                    <p class="font-semibold text-white mt-3">Spesifikasi:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 2 × Eurojet EJ200 (dengan afterburner)</li>
+                        <li>**Kecepatan Maks:** Mach 2.0+ (sekitar 2.495 km/jam)</li>
+                        <li>**Persenjataan:** Meriam internal **Mauser BK-27 27 mm**, Rudal (Meteor, IRIS-T) di 13 cantelan.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="card-rafale" data-image="https://images.unsplash.com/photo-1541334994269-07f1680d6b9d?q=80&w=2070&auto=format&fit=crop" class="vehicle-card p-6 rounded-xl card">
+                <h2 class="text-xl font-bold mb-4 text-yellow-400 border-b border-gray-700 pb-2 flex items-center">
+                    Dassault Rafale 🇫🇷
+                </h2>
+                <img img src="gambar/Rafale.jpg" alt="Pesawat Jet Dassault Rafale" class="w-full h-32 object-cover rounded-lg mb-4">
+                
+                <h3 class="text-lg font-semibold mb-2">Omni-role Versatility</h3>
+                <p class="text-sm text-gray-400 mb-4">Negara Asal: Prancis</p>
+                <p class="text-base text-gray-300 mb-4">Jet tempur sejati *omni-role*, mampu melakukan segala misi secara simultan...</p>
+                <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                    <li>Kategori: Omni-role Fighter</li>
+                </ul>
+                <a href="#" class="detail-toggle-btn mt-4 inline-block text-yellow-500 hover:text-yellow-300 font-semibold transition-colors duration-200" data-target="detail-rafale">Lihat Detail →</a>
+
+                <div id="detail-rafale" class="detail-content bg-gray-700/50 rounded-lg mt-4 p-4 text-sm text-gray-300">
+                    <h4 class="font-bold text-base mb-2 text-white">Dassault Rafale Detail & Spesifikasi</h4>
+                    Rafale dikembangkan dan diproduksi sepenuhnya oleh Prancis. Julukan *omni-role* berarti ia dapat beralih peran dengan cepat. Dikenal karena sistem peperangan elektroniknya yang kuat, SPECTRA.
+                    <p class="font-semibold text-white mt-3">Spesifikasi:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>**Mesin:** 2 × Snecma M88 (dengan afterburner)</li>
+                        <li>**Kecepatan Maks:** Mach 1.8 (sekitar 1.912 km/jam)</li>
+                        <li>**Persenjataan:** Meriam internal **GIAT 30 M791 30 mm**, Rudal (MICA, Meteor, SCALP cruise missile) di 14 cantelan.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="text-center mt-12">
-            <a href="#" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-xl transition duration-300 transform hover:scale-[1.03] shadow-lg shadow-red-700/50">
-                JELAJAHI SEMUA KENDARAAN
-            </a>
+            <a href="#" id="explore-btn" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-xl transition duration-300 transform hover:scale-[1.03] shadow-lg shadow-red-700/50">JELAJAHI SEMUA KENDARAAN</a>
         </div>
     </div>
+
+    <script>
+       
+        const mainBody = document.getElementById('main-body');
+        const vehicleCards = document.querySelectorAll('.vehicle-card');
+        const detailToggleButtons = document.querySelectorAll('.detail-toggle-btn');
+        const exploreButton = document.getElementById('explore-btn');
+
+       
+        vehicleCards.forEach(card => {
+            card.addEventListener('click', function(event) {
+                
+                if (!event.target.classList.contains('detail-toggle-btn')) {
+                    const newImage = this.getAttribute('data-image');
+                    if (newImage) {
+                        mainBody.style.backgroundImage = `url('${newImage}')`;
+                        highlightCard(this);
+                    }
+                }
+            });
+        });
+
+        
+        detailToggleButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); 
+
+                const targetId = this.getAttribute('data-target');
+                const targetContent = document.getElementById(targetId);
+                
+                
+                targetContent.classList.toggle('active');
+
+                
+                const parentCard = this.closest('.vehicle-card');
+                if (targetContent.classList.contains('active')) {
+                    const newImage = parentCard.getAttribute('data-image');
+                    mainBody.style.backgroundImage = `url('${newImage}')`;
+                    highlightCard(parentCard);
+                }
+            });
+        });
+        
+        
+       
+
+        
+        function highlightCard(activeCard) {
+            vehicleCards.forEach(card => {
+                card.classList.remove('ring-4', 'ring-red-400', 'ring-yellow-400'); // Hapus semua ring
+                card.style.backgroundColor = 'rgba(25, 30, 40, 0.9)'; 
+            });
+
+            
+            let ringColor = 'ring-red-400'; 
+            if (activeCard.id === 'card-typhoon' || activeCard.id === 'card-rafale') {
+                 ringColor = 'ring-yellow-400';
+            } else {
+                 ringColor = 'ring-red-400'; 
+            }
+
+            activeCard.classList.add('ring-4', ringColor);
+            activeCard.style.backgroundColor = 'rgba(35, 40, 50, 0.9)'; 
+        }
+
+
+       
+       
+    </script>
 </body>
 </html>
